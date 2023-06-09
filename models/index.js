@@ -1,5 +1,5 @@
-import User from "./User";
-import TourList from "./TourList";
+import User from "./User.js";
+import TourList from "./TourList.js";
 
 export {
     User,

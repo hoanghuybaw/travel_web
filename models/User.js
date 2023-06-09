@@ -8,7 +8,7 @@ export default mongoose.model('User',
             type: String,
             required: true, // NOT NULL
             validate: {
-                validator: (value) => value.lenght > 3,
+                validator: (value) => value.length > 3,
                 message: 'Username must be at least 3 characters'
             }
         },
@@ -27,7 +27,7 @@ export default mongoose.model('User',
             type: String,
             required: true,
             validate: {
-                validator: (phoneNumber) => phoneNumber.lenght > 9,
+                validator: (phoneNumber) => phoneNumber.length > 9,
                 message: 'Phone Number must be at least 9 characters'
             }
         },
