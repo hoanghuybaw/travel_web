@@ -1,6 +1,9 @@
 import { body, validationResult } from 'express-validator'
+import HttpStatusCode from '../exception/HttpStatusCode.js'
+import tourlist from '../repositories/tourlist.js'
+
 const getListTourlist = async (req, res) => {
-    res.status(200).json({
+    res.status(HttpStatusCode.OK).json({
         message: 'get tourlist sucessfully',
         data: [
             {
@@ -35,7 +38,17 @@ const getListTourlistById = async (req, res) => {
 }
 
 const insertToulist = async (req, res) => {
-    res.send('insert tourlist')
+    try {
+        const Toulist = await tourlist.insertToulist(req.body)
+        res.status(HttpStatusCode.OK).json({
+            message: 'Insert toulist success',
+            data: Toulist
+        })
+    } catch (exception) {
+        res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+            message: 'cannot insert student:'+ exception
+        })
+    }
 }
 
 const updateDateTourList = async (req, res) => {

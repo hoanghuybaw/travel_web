@@ -4,7 +4,6 @@ import {
 } from "../repositories/index.js";
 import { EventEmitter } from 'node:events'
 import HttpStatusCode from '../exception/HttpStatusCode.js'
-import Exception from "../exception/Exception.js";
 
 const myEvent = new EventEmitter()
 myEvent.on('event.register.user', (params) => {
@@ -12,18 +11,23 @@ myEvent.on('event.register.user', (params) => {
 })
 
 const login = async (req, res) => {
-    debugger;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(HttpStatusCode.BAD_REQUEST).json({ errors: errors.array() });
     }
     const { email, password } = req.body;
     //call repository
-    await userRepositories.login({ email, password });
-    res.status(HttpStatusCode.OK).json({
-        message: "Login user successfully",
-        data: "detail user",
-    });
+    try {
+        let exsitingUser = await userRepositories.login({ email, password });
+        res.status(HttpStatusCode.OK).json({
+            message: "Login user successfully",
+            data: exsitingUser,
+        });
+    } catch (exception) {
+        res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+            message: exception.toString(), 
+        })
+    }
 };
 
 const register = async (req, res) => {

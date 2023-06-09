@@ -14,7 +14,6 @@ async function connect () {
         } else if (code == 'ENOTFOUND') {
             throw new Exception(Exception.WRONG_CONNECTION_STRING)
         }
-        debugger
         throw new Exception(Exception.WRONG_CONNECT_MONGOOSEBD)
     }
 }
