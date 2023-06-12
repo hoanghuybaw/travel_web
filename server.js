@@ -4,8 +4,10 @@ dotenv.config()
 import connect from "./database/database.js"
 import { userRouter, tourlistRouter } from "./routes/index.js"
 import checkToken from "./authentication/auth.js"
+import cors from "cors"
 
 const app = express()
+app.use(cors("*"))
 app.use(checkToken)
 app.use(express.json())
 const port = process.env.PORT || 3000
