@@ -34,14 +34,12 @@ const register = async (req, res) => {
     const { name, email, password, phoneNumber, address, gender } = req.body;
     myEvent.emit('event.register.user',  req.body )
     try {
-        debugger
        let user = await userRepositories.register({ name, email, password, phoneNumber, address , gender })
         res.status(HttpStatusCode.INSERT_OK).json({
             message: "Register user successfully",
             data: user
         });
     } catch (exception) {
-        debugger
         res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
             message: exception.toString(), 
         })

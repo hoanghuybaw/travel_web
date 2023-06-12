@@ -1,5 +1,4 @@
 import mongoose, { Schema, ObjectId } from "mongoose";
-import isEmail from "validator/lib/isEmail.js";
 
 export default mongoose.model('TourList',
     new Schema({
@@ -14,18 +13,18 @@ export default mongoose.model('TourList',
         },
         timeStart: {
             type: Date,
-            validate: {
-                validator: (value) => value >= new Date(),
-                message: 'timeStart must be greater than current date'
-            },
+            // validate: {
+            //     validator: (value) => value >= new Date(),
+            //     message: 'timeStart must be greater than current date'
+            // },
             required: true,
         },
         timeTo: {
-            type: Date,
-            validate: {
-                validator: (value) => value >= this.timeStart,
-                message: 'timeTo must be greater than timeStart'
-            },
+            type: String,
+            // validate: {
+            //     validator: (value) => value >= new Date(),
+            //     message: 'timeStart must be greater than current date'
+            // },
             required: true,
         },
         detail: {

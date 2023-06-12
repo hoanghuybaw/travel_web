@@ -1,33 +1,27 @@
 import { body, validationResult } from 'express-validator'
 import HttpStatusCode from '../exception/HttpStatusCode.js'
 import tourlist from '../repositories/tourlist.js'
+import { MAX_RECORDS } from '../Global/constants.js'
 
 const getListTourlist = async (req, res) => {
+    let {page = 1, size = MAX_RECORDS, searchString = ''} = req.query
+    size = size >= MAX_RECORDS ? MAX_RECORDS : size
+   try {
+    let filteredTourlist = await tourlist.getAllTourList({
+        size, page, searchString: searchString
+    })
     res.status(HttpStatusCode.OK).json({
         message: 'get tourlist sucessfully',
-        data: [
-            {
-                name: 'tour Hà Nội - Cát Bà',
-                price: '8.000.000',
-                time: '11/06/2023'
-            },
-            {
-                name: 'tour Hà Nội - Hà Giang',
-                price: '5.000.000',
-                time: '11/06/2023'
-            },
-            {
-                name: 'tour Hà Nội - Tp.HCM',
-                price: '7.000.000',
-                time: '11/06/2023'
-            },
-            {
-                name: 'tour Hà Nội - Tp.HCM',
-                price: '7.000.000',
-                time: '11/06/2023'
-            },
-        ]
+        size: filteredTourlist.length,
+        searchString,
+        page,
+        data: filteredTourlist,
     })
+   } catch (exception) {
+    res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+        message: exception.message
+    })
+   }
     // res.status(500).json({
     //     message: 'cannot get tourlist',
     // })
@@ -46,7 +40,8 @@ const insertToulist = async (req, res) => {
         })
     } catch (exception) {
         res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
-            message: 'cannot insert student:'+ exception
+            message: 'cannot insert toulist:'+ exception,
+            validationErrors: exception.validationErrors
         })
     }
 }

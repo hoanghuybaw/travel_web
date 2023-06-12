@@ -12,7 +12,6 @@ export default function checkToken(req, res, next) {
     const token = req.headers?.authorization?.split(" ")[1]
     try {
         const jwtObject = Jwt.verify(token, process.env.JWT_SECRET)
-        debugger
         const isExpired = Date.now() >= jwtObject.exp * 1000 
         if (isExpired) {
             res.status(HttpStatusCode.BAD_REQUEST).json({
@@ -29,5 +28,4 @@ export default function checkToken(req, res, next) {
             message: exception.message
         })
     }
-    debugger
 }

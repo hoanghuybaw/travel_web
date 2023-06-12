@@ -34,7 +34,6 @@ const login = async ({ email, password }) => {
 
 const register = async ({ name, email, password, phoneNumber, address, gender }) => {
     // validation done
-    debugger
     let exsitingUser = await User.findOne({ email }).exec()
     if (!!exsitingUser) {
         throw new Exception(Exception.USER_EXIT)
