@@ -31,10 +31,10 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
-    const { name, email, password, phoneNumber, address, gender } = req.body;
+    const { name, email, password, phoneNumber, address, gender, permissionUser } = req.body;
     myEvent.emit('event.register.user',  req.body )
     try {
-       let user = await userRepositories.register({ name, email, password, phoneNumber, address , gender })
+       let user = await userRepositories.register({ name, email, password, phoneNumber, address , gender , permissionUser})
         res.status(HttpStatusCode.INSERT_OK).json({
             message: "Register user successfully",
             data: user

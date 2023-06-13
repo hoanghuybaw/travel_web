@@ -41,6 +41,9 @@ export default mongoose.model('User',
                 values: ['Male', 'female'],
                 message: '{VALUE} is not support'
             },
+        },
+        permissionUser: {
+            type: String,
             required: true,
         }
     })

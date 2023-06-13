@@ -38,6 +38,5 @@ export default mongoose.model('TourList',
             type: String,
             required: true,
         },
-
     })
 )
