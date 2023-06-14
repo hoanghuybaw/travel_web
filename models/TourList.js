@@ -12,7 +12,7 @@ export default mongoose.model('TourList',
             }
         },
         timeStart: {
-            type: Date,
+            type: String,
             // validate: {
             //     validator: (value) => value >= new Date(),
             //     message: 'timeStart must be greater than current date'

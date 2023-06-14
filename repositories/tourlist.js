@@ -32,6 +32,15 @@ const getAllTourList = async ({
     return filteredTourList
 }
 
+const getDetailTourlist = async(tourListId) => {
+    const tour = await TourList.findById(tourListId)
+    debugger
+    if (!tour) {
+        throw new Exception('cannot find tour by', tourListId)
+    }
+    return tour // default value
+}
+
 //
 const insertToulist = async ({
     name,
@@ -64,6 +73,28 @@ const insertToulist = async ({
     console.log('insert tourlist');
 }
 
+const updateToulist = async ({
+    id,
+    name,
+    address,
+    price,
+    numberPeople,
+    timeStart,
+    timeTo,
+    detail }) => {
+        const tour = await TourList.findById(id)
+        debugger
+        TourList.name = name ?? TourList.name
+        TourList.address = address ?? TourList.numberPeople
+        TourList.price = price ?? TourList.numberPeople
+        TourList.numberPeople = numberPeople ?? TourList.numberPeople
+        TourList.timeStart = timeStart ?? TourList.timeStart
+        TourList.timeTo = timeTo ?? TourList.timeTo
+        TourList.detail = detail ?? TourList.detail
+        await TourList.save()
+        return tour
+}
+
 // function generateFakeTourlist() {
 //     for(let i = 0; i<1000; i++) {
 //         TourList.create({
@@ -81,4 +112,6 @@ const insertToulist = async ({
 export default {
     getAllTourList,
     insertToulist,
+    getDetailTourlist,
+    updateToulist,
 }

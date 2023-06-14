@@ -44,7 +44,6 @@ export default mongoose.model('User',
         },
         permissionUser: {
             type: String,
-            required: true,
         }
     })
 )
