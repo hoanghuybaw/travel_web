@@ -73,7 +73,7 @@ const updateDateTourList = async (req, res) => {
     detail
   } = req.body
   try {
-    const detailTourList = tourlist.updateDateTourList(req.body);
+    const detailTourList = tourlist.updateTourList(req.body);
     res.status(HttpStatusCode.OK).json({
         message: "update tourlist sucessfully",
         data: detailTourList,
@@ -85,9 +85,15 @@ const updateDateTourList = async (req, res) => {
   }
 };
 
+const deleteTourList = async (req, res) => {
+    const tourId = req.params.id;
+
+ }
+
 export default {
   getListTourlist,
   getListTourlistById,
   insertToulist,
   updateDateTourList,
+  deleteTourList,
 };
