@@ -60,7 +60,39 @@ const register = async ({ name, email, password, phoneNumber, address, gender, p
     // print(' resgister with params with name ' + name + email + password + phoneNumber + address, OutputType.INFORMATION);
 }
 
+const getAllUser = async ({
+    page, size, searchString,
+}) => {
+    page = parseInt(page)
+    size = parseInt(size)
+    //searchString? name, email, address constains searchString
+    debugger
+    let filteredUser = await User.aggregate([
+        {
+            $match: {
+                // $or: [
+                //     {
+                //         name: {$regex: `.*${searchString}.*`}
+                //     },
+                //     {
+                //         timeStart: {$regex: `.*${searchString}.*`}
+                //     },
+                //     {
+                //         timeStart: {$regex: `.*${searchString}.*`}
+                //     },
+                // ]
+            }
+        },
+        // {
+        //     $skip: page - 1 * size
+        // },
+        { $limit: size },
+    ])
+    return filteredUser
+}
+
 export default {
     login,
-    register
+    register,
+    getAllUser,
 }

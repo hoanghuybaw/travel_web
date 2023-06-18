@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router()
 import {tourlistController} from '../controllers/index.js'
+import { bookingTourController } from "../controllers/index.js";
 
 router.get('/', tourlistController.getListTourlist)
 
@@ -10,7 +11,6 @@ router.post('/insert', tourlistController.insertToulist )
 
 router.post('/update', tourlistController.updateDateTourList)
 
-router.delete('delete', tourlistController.deleteTourlist)
 
 
 export default router

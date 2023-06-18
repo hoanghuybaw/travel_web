@@ -44,22 +44,33 @@ const getDetailTourlist = async(tourListId) => {
 //
 const insertToulist = async ({
     name,
-    address,
+    destination,
     price,
     numberPeople,
     timeStart,
     timeTo,
-    detail }) => {
+    detail,
+    Service,
+    day,
+    night,
+    priceChildren,
+    thumbNail
+ }) => {
     try {
         debugger
         const toulist = await TourList.create({
             name,
-            address,
+            destination,
             price,
             numberPeople,
             timeStart,
             timeTo,
-            detail
+            detail,
+            Service,
+            day,
+            night,
+            priceChildren,
+            thumbNail
         })
         return toulist
     } catch (exception) {

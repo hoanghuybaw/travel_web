@@ -4,6 +4,7 @@ import { userController } from '../controllers/index.js'
 const router = express.Router()
 
 router.get('/', userController.getDetailUser)
+router.get('/getall', userController.getAllUser)
 
 router.post('/login', body('email').isEmail(),
     body('password').isLength({ min: 5 }),

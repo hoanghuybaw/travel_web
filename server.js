@@ -2,7 +2,7 @@ import express from "express"
 import * as dotenv from "dotenv"
 dotenv.config()
 import connect from "./database/database.js"
-import { userRouter, tourlistRouter } from "./routes/index.js"
+import { userRouter, tourlistRouter, bookingRouter } from "./routes/index.js"
 import checkToken from "./authentication/auth.js"
 import cors from "cors"
 
@@ -14,6 +14,7 @@ const port = process.env.PORT || 3000
 //router
 app.use('/users', userRouter)
 app.use('/tourlist', tourlistRouter)
+app.use('/booking', bookingRouter)
 
 app.get('/', (req, res) => {
     res.send('response from root router')

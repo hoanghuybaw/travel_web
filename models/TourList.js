@@ -34,7 +34,29 @@ export default mongoose.model('TourList',
             type: String,
             required: true,
         },
-        address: {
+        destination: {
+            type: String,
+            required: true,
+        },
+        Service: {
+            type: Array,
+        },
+        day: {
+            type: String,
+            required: true,
+        },
+        night: {
+            type: String,
+            required: true,
+        },
+        price: {
+            type: String,
+            required: true,
+        },
+        priceChildren: {
+            type: String,
+        },
+        thumbNail: {
             type: String,
             required: true,
         },
