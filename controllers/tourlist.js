@@ -34,10 +34,11 @@ const getListTourlistById = async (req, res) => {
     debugger
   let tourListId = req.params.id;
   try {
-    const detailTourList = tourlist.getDetailTourlist(tourListId);
+    const detailTour = tourlist.getDetailTourlist(tourListId);
+    debugger
     res.status(HttpStatusCode.OK).json({
         message: "get tourlist sucessfully",
-        data: detailTourList,
+        data: detailTour,
       });
   } catch (exception) {
     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({

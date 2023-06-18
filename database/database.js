@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { print, OutputType } from "../helpers/print.js";
 import Exception from "../exception/Exception.js";
+mongoose.set('strictQuery', false);
 
 async function connect () {
     try {

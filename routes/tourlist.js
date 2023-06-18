@@ -18,7 +18,19 @@ const upload = multer({ storage });
 
 router.get("/", tourlistController.getListTourlist);
 
-router.get("/:id", tourlistController.getListTourlistById);
+router.get("/:id",  (req, res) => {
+    const tourId = req.params.id;
+  
+    TourList.findById(tourId, (err, tour) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else if (!tour) {
+        res.status(404).json({ error: 'Tour not found' });
+      } else {
+        res.json(tour);
+      }
+    });
+  });
 
 router.post("/insert", upload.array('images', 5), (req, res) => {
   const {
