@@ -3,6 +3,7 @@ import tourlistController from "./tourlist.js";
 import bookingTourController from "./bookingTour.js";
 import countryController from "./country.js";
 import discountController from './discount.js'
+import commentsController from './comments.js'
 
 export {
     userController,
@@ -10,4 +11,5 @@ export {
     bookingTourController,
     countryController,
     discountController,
+    commentsController
 }

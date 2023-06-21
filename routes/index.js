@@ -3,6 +3,7 @@ import tourlistRouter from './tourlist.js'
 import bookingRouter from './bookingtour.js'
 import countryRouter from './country.js'
 import discountRouter from './discount.js'
+import commentsRouter from './comments.js'
 
 export {
     userRouter,
@@ -10,4 +11,5 @@ export {
     bookingRouter,
     countryRouter,
     discountRouter,
+    commentsRouter,
 }
