@@ -11,7 +11,8 @@ const Createbooking = async ({
     phoneNumber,
     email,
     numberPeople,
-    numberChildren }) => {
+    numberChildren,
+    refCode }) => {
     try {
         debugger
         const Booking = await BookingTour.create({
@@ -23,7 +24,8 @@ const Createbooking = async ({
             phoneNumber,
             email,
             numberPeople,
-            numberChildren
+            numberChildren,
+            refCode
         })
         return Booking
     } catch (exception) {

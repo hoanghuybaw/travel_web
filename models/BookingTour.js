@@ -38,5 +38,8 @@ export default mongoose.model('BookingTour',
         note: {
             type: String,
         },
+        refCode: {
+            type: String,
+        }
     })
 )

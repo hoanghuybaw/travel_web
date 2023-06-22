@@ -35,15 +35,11 @@ export default mongoose.model('User',
             type: String,
             required: true,
         },
-        gender: {
-            type: String,
-            enum: {
-                values: ['Male', 'female'],
-                message: '{VALUE} is not support'
-            },
-        },
         permissionUser: {
             type: String,
+        },
+        refCode: {
+            type: String
         }
     })
 )

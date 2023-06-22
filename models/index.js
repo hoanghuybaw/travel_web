@@ -4,6 +4,7 @@ import BookingTour from "./BookingTour.js";
 import Country from "./Country.js";
 import Discount from "./Discount.js";
 import Comments from "./Comments.js";
+import TourismTypes from "./tourismtypes.js";
 
 export {
     User,
@@ -11,5 +12,6 @@ export {
     BookingTour,
     Country,
     Discount,
-    Comments
+    Comments,
+    TourismTypes
 }

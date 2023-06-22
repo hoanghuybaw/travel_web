@@ -32,7 +32,7 @@ const login = async ({ email, password }) => {
     }
 }
 
-const register = async ({ name, email, password, phoneNumber, address, gender, permissionUser }) => {
+const register = async ({ name, email, password, phoneNumber, address, gender, permissionUser, refCode }) => {
     // validation done
     let exsitingUser = await User.findOne({ email }).exec()
     if (!!exsitingUser) {
@@ -51,7 +51,8 @@ const register = async ({ name, email, password, phoneNumber, address, gender, p
         phoneNumber,
         address,
         gender,
-        permissionUser
+        permissionUser,
+        refCode
     })
     return {
         ...newUser._doc,
