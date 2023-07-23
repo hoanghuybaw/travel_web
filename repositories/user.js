@@ -3,6 +3,8 @@ import { User } from '../models/index.js'
 import Exception from "../exception/Exception.js";
 import bcrypt from 'bcrypt'
 import Jwt from "jsonwebtoken";
+import crypto from 'crypto';
+import nodemailer from 'nodemailer';
 
 const login = async ({ email, password }) => {
     print('login user in repo', OutputType.INFORMATION);
@@ -44,6 +46,7 @@ const register = async ({ name, email, password, phoneNumber, address, gender, p
     // }
     const hashedPassword = await bcrypt.hash(password, parseInt(process.env.SALT_ROUND))
     //isert to db 
+    const verificationCode = crypto.randomBytes(16).toString('hex');
     const newUser = await User.create({
         name,
         email,
@@ -52,7 +55,8 @@ const register = async ({ name, email, password, phoneNumber, address, gender, p
         address,
         gender,
         permissionUser,
-        refCode
+        refCode,
+        verificationCode
     })
     return {
         ...newUser._doc,
