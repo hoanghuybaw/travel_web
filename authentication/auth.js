@@ -2,11 +2,16 @@ import HttpStatusCode from "../exception/HttpStatusCode.js";
 import Jwt from "jsonwebtoken";
 
 export default function checkToken(req, res, next) {
+  const url = req.url 
+  const url_index = url.indexOf('reset-password/') + 'reset-password/'.length;
+  let url_string = url.slice(url_index);
   // bypass login, register
   if (
     req.url.toLowerCase().trim() == "/users/login".toLowerCase().trim() ||
-    req.url.toLowerCase().trim() == "/users/register".toLowerCase().trim() || 
-    req.url.toLowerCase().trim() == "/tourlist".toLowerCase().trim()
+    req.url.toLowerCase().trim() == "/users/register".toLowerCase().trim() ||
+    req.url.toLowerCase().trim() == "/tourlist".toLowerCase().trim() ||
+    req.url.toLowerCase().trim() == "/users/forgot-password".toLowerCase().trim() ||
+    req.url.toLowerCase().trim() == `/users/reset-password/${url_string}`.toLowerCase().trim()
   ) {
     next();
     return;

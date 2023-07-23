@@ -123,10 +123,10 @@ const forgotUser = async (req, res) => {
       service: "Gmail",
       auth: {
         user: "hoanghuybaw@gmail.com",
-        pass: "Huy_1199",
+        pass: "huwqvdieotmthhmu",
       },
     });
-
+    debugger
     const mailOptions = {
       from: "hoanghuybaw@gmail.com",
       to: email,
